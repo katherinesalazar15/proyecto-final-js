@@ -33,13 +33,9 @@
 // const resultadoBusqueda = productos.find((el) => el.name == busqueda) 
 // console.log(resultadoBusqueda)
 
-// //FUNCION QUE SUMA EL TOTAL DEL CARRITO //
- 
-// const totalDeCompra = productos.reduce((acc,el) => acc + el.price, 0)
-// console.log("el total de su compra es de: $" + totalDeCompra)
 
 const carrito = JSON.parse(localStorage.getItem("carrito")) ?? [];
-const total = carrito.reduce((acumulador, producto) => acumulador + producto.price, 0);
+const total = carrito.reduce((acumulador, {price}) => acumulador + price, 0);
 document.getElementById("cart-total").innerHTML = `${carrito.length}  - $${total}`;
 
 
@@ -71,31 +67,31 @@ const productos = [
     },
 ];
 
+//FUNCION QUE CREA LAS CARDS
 
-
-productos.forEach((producto) => {
-  const idButton = `add-cart${producto.id}` 
+productos.forEach(({id,title,img,price}) => {
+  const idButton = `add-cart${id}` 
   document.getElementById("seccion-card").innerHTML += `<div class="col mb-5">
   <div class="card h-100">
       <!-- Product image-->
-      <img class="card-img-top" style="height:210px" src="${producto.img}"/>
+      <img class="card-img-top" style="height:210px" src="${img}"/>
       <!-- Product details-->
       <div class="card-body p-4">
           <div class="text-center">
               <!-- Product name-->
               <h5 class="fw-bolder">
-                ${producto.title}
+                ${title}
               </h5>
               <!-- Product price-->
               <div class="precio">
-                <p>$${producto.price}</p>
+                <p>$${price}</p>
               </div>
           </div>
       </div>
       <!-- Product actions-->
       <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
           <div class="text-center">
-              <a id="${idButton}" class="btn btn-outline-dark mt-auto" data-id="${producto.id}">
+              <a id="${idButton}" class="btn btn-outline-dark mt-auto" data-id="${id}">
                   Agregar al carrito
               </a>
           </div>
@@ -104,6 +100,7 @@ productos.forEach((producto) => {
   </div>` 
 })
 
+//FUNCION QUE PERMITE AGREGAR PRODUCTOS AL CARRITO Y LOS MUESTRA EN EL MODAL
 
 productos.forEach((producto) => {
   const idButton = `add-cart${producto.id}`  
@@ -128,7 +125,6 @@ productos.forEach((producto) => {
 });
 
 console.log(carrito)
-
 
 
 
