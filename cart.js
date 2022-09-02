@@ -1,6 +1,7 @@
 
 let table = document.getElementById("cart");
 let div = document.getElementById("carrito-footer");
+let span = document.getElementById("checkout")
 
 
   // FUNCIÓN QUE CREA EL CARRITO
@@ -65,6 +66,26 @@ function botonVaciado(producto) {
       title: 'Carrito Vacio!',
     })}
   }
+
+  // FUNCION CHECKOUT
+
+function checkout() {
+  localStorage.setItem("carrito", JSON.stringify(carrito));
+            const total = carrito.reduce((acumulador, producto) => acumulador + producto.price, 0);
+            document.getElementById("checkout").innerHTML = `${carrito.length} - $${total}`;
+            span.innerHTML = `<div class="cart-content">
+                <h1>Resumen de la compra</h1>
+                <p>Subtotal<span>$99</span></p>
+                <p>Costo de envío<span>$100</span></p>
+                <h2>Total<span>$100</span></h2>
+              </div>
+              <div class="cart-btn" style="width:470px">
+                <button>Finalizar Compra</button>
+    </div>`
+}
+checkout()
+
+
   
 
 
