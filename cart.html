@@ -81,22 +81,15 @@
                                 <div class="cart-page-inner">
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <div class="coupon">
-                                                <input type="text" placeholder="Código de cupon">
-                                                <button>Aplicar código</button>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <span class="cart-summary" id="checkout">
-                                                <!-- <div class="cart-content">
+                                            <span class="cart-summary">
+                                                <div class="cart-content">
                                                     <h1>Resumen de la compra</h1>
-                                                    <p>Subtotal<span>$99</span></p>
-                                                    <p>Costo de envío<span>$1</span></p>
-                                                    <h2>Total<span>$100</span></h2>
+                                                    <p>Productos agregados<span id="items">$99</span></p>
+                                                    <h2>Total a pagar<span id="checkout">$100</span></h2>
                                                 </div>
-                                                <div class="cart-btn" style="width:100%">
-                                                    <button>Finalizar Compra</button>
-                                                </div> -->
+                                                <p class="cart-btn" style="width:100%" id="final">
+                                                    <button onclick="finalizarCompra()">Finalizar Compra</button>
+                                                </p>
                                             </span>
                                         </div>
                                     </div>

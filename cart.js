@@ -1,7 +1,7 @@
 
 let table = document.getElementById("cart");
 let div = document.getElementById("carrito-footer");
-let span = document.getElementById("checkout")
+let p = document.getElementById("final");
 
 
   // FUNCIÓN QUE CREA EL CARRITO
@@ -72,18 +72,20 @@ function botonVaciado(producto) {
 function checkout() {
   localStorage.setItem("carrito", JSON.stringify(carrito));
             const total = carrito.reduce((acumulador, producto) => acumulador + producto.price, 0);
-            document.getElementById("checkout").innerHTML = `${carrito.length} - $${total}`;
-            span.innerHTML = `<div class="cart-content">
-                <h1>Resumen de la compra</h1>
-                <p>Subtotal<span>$99</span></p>
-                <p>Costo de envío<span>$100</span></p>
-                <h2>Total<span>$100</span></h2>
-              </div>
-              <div class="cart-btn" style="width:470px">
-                <button>Finalizar Compra</button>
-    </div>`
+            document.getElementById("items").innerHTML = `${carrito.length}`;
+            document.getElementById("checkout").innerHTML = `$${total}`;
 }
 checkout()
+
+function finalizarCompra() {
+  Swal.fire(
+    'Gracias por su compra!',
+    'Pronto recibirá su pedido!',
+    'success'
+  )
+}
+
+
 
 
   
