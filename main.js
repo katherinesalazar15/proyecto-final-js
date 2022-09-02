@@ -71,7 +71,6 @@ function agregarAlCarrito(catalogo){
         localStorage.setItem("carrito", JSON.stringify(carrito));
             const total = carrito.reduce((acumulador, producto) => acumulador + producto.price, 0);
             document.getElementById("cart-total").innerHTML = `${carrito.length} - $${total}`;
-            generarCardsCarrito()
       })
     }
     console.log(carrito)
@@ -112,12 +111,13 @@ function eliminarDelCarrito(productoId) {
     })}
   }
   
-//FUNCION QUE PERMITE RECARGAR LA PÁGINA CON EL BOTÓN DE INICIO
+  //FUNCION QUE PERMITE RECARGAR LA PÁGINA CON EL BOTÓN DE INICIO
 
 const reload = document.getElementById('reload');
 
 reload.addEventListener('click', _ => { // el _ es para indicar la ausencia de parametros
     location.reload();
 });
+
 
 
