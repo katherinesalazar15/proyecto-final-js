@@ -1,130 +1,123 @@
 
-// // FUNCION QUE AGREGA PRODUCTOS //
-
-// let productos = [];
-
-
-// function agregarAlCarrito(producto){
-
-
-//     productos.push(producto);   
-// }
-// console.log(productos)
-
-// agregarAlCarrito({id: 1, name: "Pollera Sofia", price: 1200})
-// agregarAlCarrito({id: 2, name: "Remera Umma", price: 1000})
-// agregarAlCarrito({id: 3, name: "Pantalón Berlin", price: 2500})
-// agregarAlCarrito({id: 4, name: "Short Melina", price: 2000})
-
-// // FUNCION QUE BORRA PRODUCTOS DEL CARRITO //
-
-// function borrarProductoDelCarrito(idDelProducto){
-//     const index = productos.findIndex(producto => producto.id === idDelProducto);
-//     if(index !== -1) { 
-//         productos.splice(index, 1);
-//     }
-// }
-
-// borrarProductoDelCarrito(2)
-
-// // FUNCION QUE BUSCA PRODUCTOS //
-
-// let busqueda = prompt("Ingrese el producto que desea buscar:")
-// const resultadoBusqueda = productos.find((el) => el.name == busqueda) 
-// console.log(resultadoBusqueda)
-
-
 const carrito = JSON.parse(localStorage.getItem("carrito")) ?? [];
 const total = carrito.reduce((acumulador, {price}) => acumulador + price, 0);
 document.getElementById("cart-total").innerHTML = `${carrito.length}  - $${total}`;
 
 
+let productos = []
 
-const productos = [ 
-    {
-        id: 1, 
-        title: "Pollera Sofia",
-        img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTBalmNIoUdA2eAc0tCwnAlNZHAtJelc3dyVA&usqp=CAU",
-        price: 1200
-    },
-    {
-        id: 2, 
-        title: "Remera Umma",
-        img: "https://img.ar.class.posot.com/es_ar/2017/09/14/Remeras-Gucci-Levis-Fila-Tommy-tendencia-20170914112949.jpg", 
-        price: 1000,
-    },
-    {
-        id: 3, 
-        title: "Pantalón Berlin", 
-        img: "https://ae01.alicdn.com/kf/H18e87f3254df48118a6432ca7f8a3bd0w/Pantalones-de-sastre-con-detalles-plisados-para-mujer.jpg_Q90.jpg_.webp",
-        price: 3500
-    },
-    {
-        id: 4, 
-        title: "Short Melina", 
-        img: "https://images-na.ssl-images-amazon.com/images/I/51ztXJf3M-S._AC_UL604_SR604,400_.jpg",
-        price: 2000
-    },
-];
+//FUNCION QUE CREA LAS CARDS QUE VIENEN DEL JSON
+const buscarProductosJson = () => {
+  fetch('productos.json')
+    .then((response) => response.json())
+    .then(informacion => {
+      crearCards(informacion),
+      agregarAlCarrito(informacion)
+      productos.push(...informacion)
+      console.log(productos)
+    })
+  }
 
-//FUNCION QUE CREA LAS CARDS
+buscarProductosJson();
 
-productos.forEach(({id,title,img,price}) => {
-  const idButton = `add-cart${id}` 
-  document.getElementById("seccion-card").innerHTML += `<div class="col mb-5">
-  <div class="card h-100">
-      <!-- Product image-->
-      <img class="card-img-top" style="height:210px" src="${img}"/>
-      <!-- Product details-->
-      <div class="card-body p-4">
-          <div class="text-center">
-              <!-- Product name-->
-              <h5 class="fw-bolder">
-                ${title}
-              </h5>
-              <!-- Product price-->
-              <div class="precio">
-                <p>$${price}</p>
+//FUNCION QUE CREA LAS CARDS en la pantalla principal
+
+function crearCards(productos){
+    productos.forEach(({id,title,img,price}) => {
+      const idButton = `add-cart${id}` 
+      document.getElementById("seccion-card").innerHTML += `<div class="col mb-5">
+      <div class="card h-100">
+          <!-- Product image-->
+          <img class="card-img-top" style="height:210px" src="${img}"/>
+          <!-- Product details-->
+          <div class="card-body p-4">
+              <div class="text-center">
+                  <!-- Product name-->
+                  <h5 class="fw-bolder">
+                    ${title}
+                  </h5>
+                  <!-- Product price-->
+                  <div class="precio">
+                    <p>$${price}</p>
+                  </div>
               </div>
           </div>
-      </div>
-      <!-- Product actions-->
-      <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-          <div class="text-center">
-              <a id="${idButton}" class="btn btn-outline-dark mt-auto" data-id="${id}">
-                  Agregar al carrito
-              </a>
+          <!-- Product actions-->
+          <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+              <div class="text-center">
+                  <a id="${idButton}" class="btn btn-outline-dark mt-auto" data-id="${id}">
+                      Agregar al carrito
+                  </a>
+              </div>
           </div>
-      </div>
-    </div>
-  </div>` 
-})
+        </div>
+      </div>`   
+    })
+  }
+  
 
 //FUNCION QUE PERMITE AGREGAR PRODUCTOS AL CARRITO Y LOS MUESTRA EN EL MODAL
 
-productos.forEach((producto) => {
-  const idButton = `add-cart${producto.id}`  
-  document.getElementById(idButton).addEventListener('click', () => {
-    carrito.push(producto);
-    localStorage.setItem("carrito", JSON.stringify(carrito));
-        const total = carrito.reduce((acumulador, producto) => acumulador + producto.price, 0);
-        document.getElementById("cart-total").innerHTML = `${carrito.length} - $${total}`;
-        document.getElementById("cart-elements").innerHTML = ""
-        carrito.forEach((producto) => {
-            document.getElementById("cart-elements").innerHTML += `<tr>
-                <th scope="row">${producto.id}</th>
-                <td>${producto.title}</td>
-                <td><img src="${producto.img}" style="width:130px"></td>
-                <td>${producto.price}</td>
-                <td>
-                    <button>Sacar del carrito</button>
-                </td>
-            </tr>`
-        })
-  })
+function agregarAlCarrito(catalogo){  
+    for(const producto of catalogo) {
+      const idButton = `add-cart${producto.id}`  
+      document.getElementById(idButton).addEventListener('click', () => {
+        carrito.push(producto);
+        Swal.fire(
+          'Se agregó tu producto al carrito!',
+          'Vuelve a la página para seguir comprando',
+          'success'
+        )
+        localStorage.setItem("carrito", JSON.stringify(carrito));
+            const total = carrito.reduce((acumulador, producto) => acumulador + producto.price, 0);
+            document.getElementById("cart-total").innerHTML = `${carrito.length} - $${total}`;
+            generarCardsCarrito()
+      })
+    }
+    console.log(carrito)
+}
+
+
+// FILTRAR PRODUCTOS SEGUN CATEGORIAS PARTE DE ABAJO Y PARTE DE ARRIBA
+
+for (const nodoHTML of document.getElementsByClassName('filtrar-categoria')){
+    nodoHTML.onclick = (event) => {
+        const categoria = event.target.getAttribute('data-categoria')
+        filtrarProductosPorCategoria(categoria)
+    }
+  }
+  
+  function filtrarProductosPorCategoria(categoria) {
+    document.getElementById("seccion-card").innerHTML = "";
+    const productosFiltrados = productos.filter((producto) => producto.category === categoria);
+    crearCards(productosFiltrados) // CREA LAS CARDS DE PRODUCTOS FILTADOS
+    agregarAlCarrito(productosFiltrados) // FUNCION QUE AGREGA PRODUCTOS FILTRADOS AL CARRITO
+  
+  }
+
+
+// FUNCION QUE BORRA PRODUCTOS DEL CARRITO
+
+function eliminarDelCarrito(productoId) {
+    const borrado = carrito.find((producto) => producto.id == productoId)
+    let i = carrito.indexOf(borrado)
+    if (i != -1) carrito.splice(i, 1)
+    localStorage.setItem("carrito", JSON.stringify(carrito))
+    const total = carrito.reduce((acumulador, producto) => acumulador + producto.price, 0);
+    document.getElementById("cart-total").innerHTML = `${carrito.length} - $${total}`;
+    generarCardsCarrito()
+    {Swal.fire({
+        icon: 'success',
+        title: 'Producto eliminado!',
+    })}
+  }
+  
+//FUNCION QUE PERMITE RECARGAR LA PÁGINA CON EL BOTÓN DE INICIO
+
+const reload = document.getElementById('reload');
+
+reload.addEventListener('click', _ => { // el _ es para indicar la ausencia de parametros
+    location.reload();
 });
-
-console.log(carrito)
-
 
 
