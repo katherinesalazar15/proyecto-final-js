@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Proyecto Final JavaScript</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- Bootstrap icons-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="css/styles.css" rel="stylesheet" />
+        <!-- Core theme sweetalert2 -->
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <!-- Core theme JS-->
+        <script src="main.js" defer></script>
+        <script src="cart.js" defer></script>
+    </head>
+    <body>
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <div class="container px-4 px-lg-5">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4" id="navegacion-categorias">
+                        <li class="nav-item"><a class="nav-link active" id="reload" aria-current="page" href="index.html">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="contact.html">Contacto</a></li>
+                        <li class="nav-item dropdown" id="seccion-dropdown">
+                            <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Categorias</a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><hr class="dropdown-divider" /></li>
+                                <li><a class="dropdown-item filtrar-categoria" data-categoria="Parte de arriba" href="#!">Parte de arriba</a></li>
+                                <li><a class="dropdown-item filtrar-categoria" data-categoria="Parte de abajo" href="#!">Parte de abajo</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <div>                        
+                        <a href="cart.html" class="btn cart btn-outline-dark" data-bs-target="#exampleModal">
+                            <i class="bi-cart-fill me-1"></i>
+                            Carrito
+                            <span id="cart-total" class="badge bg-dark text-white ms-1 rounded-pill">(0)</span>
+                        </a>                        
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <!-- Header-->
+        
+        <!-- Section-->
+                <!-- Cart Start -->
+                <div class="cart-page m-5">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-lg-8">
+                                <div class="cart-page-inner">
+                                    <div class="table-responsive" id="cards-modal">
+                                        <table class="table table-bordered text-center" id="cart">
+                                            <thead class="thead-dark">
+                                                <tr>
+                                                    <th>Producto</th>
+                                                    <th>Precio</th>
+                                                    <th>Cantidad</th>
+                                                    <th>Total</th>
+                                                    <th>Eliminar</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody class="align-middle" id="cart-elements">
+                                                
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="modal-footer" id="carrito-footer">                            
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="cart-page-inner">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="coupon">
+                                                <input type="text" placeholder="Coupon Code">
+                                                <button>Apply Code</button>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="cart-summary">
+                                                <div class="cart-content">
+                                                    <h1>Cart Summary</h1>
+                                                    <p>Sub Total<span>$99</span></p>
+                                                    <p>Shipping Cost<span>$1</span></p>
+                                                    <h2>Grand Total<span>$100</span></h2>
+                                                </div>
+                                                <div class="cart-btn">
+                                                    <button>Update Cart</button>
+                                                    <button>Checkout</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Cart End -->
+        
+        
+        
+        <!-- Footer-->
+        <footer class="py-5 bg-dark">
+            <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2022</p></div>
+        </footer>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <!-- <script src="main.js"></script> -->
+        <!-- JavaScript Libraries -->
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    </body>
+</html>
