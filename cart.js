@@ -25,15 +25,25 @@ function generarCardsCarrito() {
         </td>
     </tr>`
     $('.qty button').on('click', function () {
-        var $button = $(this);
-        var oldValue = $button.parent().find('input').val();
+        let $button = $(this);
+        let oldValue = $button.parent().find('input').val();
         if ($button.hasClass('btn-plus')) {
-            var newVal = parseFloat(oldValue) + 1;
-        } else {
-            if (oldValue > 0) {
+            var newVal = parseFloat(oldValue) + 1; 
+              carrito.push(producto);
+              checkout()
+              const total = carrito.reduce((acumulador, producto) => acumulador + producto.price, 0);
+              document.getElementById("cart-total").innerHTML = `${carrito.length} - $${total}`;
+          } else {
+            if (oldValue > 1) {
                 var newVal = parseFloat(oldValue) - 1;
+                const borrado = carrito.find((producto) => producto == producto)
+                let i = carrito.indexOf(borrado)
+                if (i != -1) carrito.splice(i, 1)
+                const total = carrito.reduce((acumulador, producto) => acumulador + producto.price, 0);
+                document.getElementById("cart-total").innerHTML = `${carrito.length} - $${total}`;
+                generarCardsCarrito();
             } else {
-                newVal = 0;
+                newVal = 1;
             }
         }
         $button.parent().find('input').val(newVal);

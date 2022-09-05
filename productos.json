@@ -1,13 +1,5 @@
 [
     {
-        "id": 1, 
-        "title": "Pollera Sofia",
-        "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTBalmNIoUdA2eAc0tCwnAlNZHAtJelc3dyVA&usqp=CAU",
-        "price": 2200,
-        "cantidad":10,
-        "category": "Parte de abajo"
-    },
-    {
         "id": 2, 
         "title": "Remera Umma",
         "img": "https://img.ar.class.posot.com/es_ar/2017/09/14/Remeras-Gucci-Levis-Fila-Tommy-tendencia-20170914112949.jpg", 
