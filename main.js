@@ -104,6 +104,8 @@ function eliminarDelCarrito(productoId) {
     localStorage.setItem("carrito", JSON.stringify(carrito))
     const total = carrito.reduce((acumulador, producto) => acumulador + producto.price, 0);
     document.getElementById("cart-total").innerHTML = `${carrito.length} - $${total}`;
+    document.getElementById("items").innerHTML = `${carrito.length}`;
+    document.getElementById("checkout").innerHTML = `${carrito.length} - $${total}`;
     generarCardsCarrito()
     {Swal.fire({
         icon: 'success',

@@ -31,16 +31,22 @@ function generarCardsCarrito() {
             var newVal = parseFloat(oldValue) + 1; 
               carrito.push(producto);
               checkout()
+              localStorage.setItem("carrito", JSON.stringify(carrito))
               const total = carrito.reduce((acumulador, producto) => acumulador + producto.price, 0);
               document.getElementById("cart-total").innerHTML = `${carrito.length} - $${total}`;
+              document.getElementById("items").innerHTML = `${carrito.length}`;
+              document.getElementById("checkout").innerHTML = `$${total}`;
           } else {
             if (oldValue > 1) {
                 var newVal = parseFloat(oldValue) - 1;
                 const borrado = carrito.find((producto) => producto == producto)
                 let i = carrito.indexOf(borrado)
                 if (i != -1) carrito.splice(i, 1)
+                localStorage.setItem("carrito", JSON.stringify(carrito))
                 const total = carrito.reduce((acumulador, producto) => acumulador + producto.price, 0);
                 document.getElementById("cart-total").innerHTML = `${carrito.length} - $${total}`;
+                document.getElementById("items").innerHTML = `${carrito.length}`;
+                document.getElementById("checkout").innerHTML = `$${total}`;
                 generarCardsCarrito();
             } else {
                 newVal = 1;
@@ -70,6 +76,8 @@ function botonVaciado(producto) {
       localStorage.setItem("carrito", JSON.stringify(carrito))
       const total = carrito.reduce((acumulador, producto) => acumulador + producto.price, 0);
       document.getElementById("cart-total").innerHTML = `${carrito.length} - $${total}`;
+      document.getElementById("items").innerHTML = `${carrito.length}`;
+      document.getElementById("checkout").innerHTML = `${carrito.length} - $${total}`;
     generarCardsCarrito();
     {Swal.fire({
       icon: 'success',
@@ -81,9 +89,9 @@ function botonVaciado(producto) {
 
 function checkout() {
   localStorage.setItem("carrito", JSON.stringify(carrito));
-            const total = carrito.reduce((acumulador, producto) => acumulador + producto.price, 0);
-            document.getElementById("items").innerHTML = `${carrito.length}`;
-            document.getElementById("checkout").innerHTML = `$${total}`;
+    const total = carrito.reduce((acumulador, producto) => acumulador + producto.price, 0);
+    document.getElementById("items").innerHTML = `${carrito.length}`;
+    document.getElementById("checkout").innerHTML = `$${total}`;
 }
 checkout()
 
