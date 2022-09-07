@@ -1,10 +1,18 @@
 [
     {
+        "id": 1, 
+        "title": "Skort Zara",
+        "img": "https://www.instyle.es/medio/2020/10/21/zara-look-skort-1_076606d3_812x456.jpg", 
+        "price": 2000,
+        "cantidad":1,
+        "category": "Parte de abajo"
+    },
+    {
         "id": 2, 
         "title": "Remera Umma",
         "img": "https://img.ar.class.posot.com/es_ar/2017/09/14/Remeras-Gucci-Levis-Fila-Tommy-tendencia-20170914112949.jpg", 
         "price": 1000,
-        "cantidad":10,
+        "cantidad":1,
         "category": "Parte de arriba"
     },
     {
@@ -12,7 +20,7 @@
         "title": "Pantalón Berlin", 
         "img": "https://ae01.alicdn.com/kf/H18e87f3254df48118a6432ca7f8a3bd0w/Pantalones-de-sastre-con-detalles-plisados-para-mujer.jpg_Q90.jpg_.webp",
         "price": 3500,
-        "cantidad":10,
+        "cantidad":1,
         "category": "Parte de abajo"
     },
     {
@@ -20,7 +28,7 @@
         "title": "Short Melina", 
         "img": "https://images-na.ssl-images-amazon.com/images/I/51ztXJf3M-S._AC_UL604_SR604,400_.jpg",
         "price": 2000,
-        "cantidad":10,
+        "cantidad":1,
         "category": "Parte de abajo"
     },
     {
@@ -28,7 +36,7 @@
         "title": "Top Ona", 
         "img": "https://www.onasaez.com/wp-content/uploads/2022/07/22.webp",
         "price": 1500,
-        "cantidad":10,
+        "cantidad":1,
         "category": "Parte de arriba"
     },
     {
@@ -36,7 +44,7 @@
         "title": "Top Volados", 
         "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQud__mcmvJ2a6KHPtWWRFdvJqwC_uXq0DGB22Hac-qgURp8Fl2u30Upldb9jy98HdMIsk&usqp=CAU",
         "price": 1900,
-        "cantidad":10,
+        "cantidad":1,
         "category": "Parte de arriba"
     },
     {
@@ -44,7 +52,7 @@
         "title": "Top Mely", 
         "img": "https://916314c45c.clvaw-cdnwnd.com/b251a71f98181242bc988b1ecc501ef9/200007645-051170511a/proveedores-de-ropa-al-por-mayor-ropa-importada-por-mayor-en-avellaneda.jpg?ph=916314c45c",
         "price": 2500,
-        "cantidad":10,
+        "cantidad":1,
         "category": "Parte de arriba"
     },
     {
@@ -52,7 +60,7 @@
         "title": "Pollera Roci", 
         "img": "https://i.linio.com/p/0ca1a37bf2f9316223424066be968585-product.jpg",
         "price": 2500,
-        "cantidad":10,
+        "cantidad":1,
         "category": "Parte de abajo"
     }
 ]

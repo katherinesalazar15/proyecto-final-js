@@ -15,7 +15,7 @@ function generarCardsCarrito() {
         <td>
             <div class="qty">
                 <button class="btn-minus"><i class="fa fa-minus"></i></button>
-                <input type="text" value="1">
+                <input type="text" id="cantidad-producto" value="${producto.cantidad}">
                 <button class="btn-plus"><i class="fa fa-plus"></i></button>
             </div>
         </td>
@@ -29,7 +29,13 @@ function generarCardsCarrito() {
         let oldValue = $button.parent().find('input').val();
         if ($button.hasClass('btn-plus')) {
             var newVal = parseFloat(oldValue) + 1; 
+            let existeElProducto = carrito.some((prod) => prod.id == producto.id)
+            if(existeElProducto){
+                let prodFind = carrito.find((prod) => prod.id == producto.id)
+                prodFind.cantidad++;
+            }else{
               carrito.push(producto);
+            }
               checkout()
               localStorage.setItem("carrito", JSON.stringify(carrito))
               const total = carrito.reduce((acumulador, producto) => acumulador + producto.price, 0);
@@ -39,12 +45,17 @@ function generarCardsCarrito() {
           } else {
             if (oldValue > 1) {
                 var newVal = parseFloat(oldValue) - 1;
-                const borrado = carrito.find((producto) => producto == producto)
+                const borrado = carrito.find((producto) => producto.cantidad == producto.cantidad)
                 let i = carrito.indexOf(borrado)
-                if (i != -1) carrito.splice(i, 1)
+                producto.cantidad--
+                if(producto.cantidad <= 0){
+                    carrito.splice(i, 1)
+                    producto.cantidad = 1
+                }
                 localStorage.setItem("carrito", JSON.stringify(carrito))
                 const total = carrito.reduce((acumulador, producto) => acumulador + producto.price, 0);
                 document.getElementById("cart-total").innerHTML = `${carrito.length} - $${total}`;
+                document.getElementById("cantidad-producto").innerHTML = `${carrito.length} - $${total}`;
                 document.getElementById("items").innerHTML = `${carrito.length}`;
                 document.getElementById("checkout").innerHTML = `$${total}`;
                 generarCardsCarrito();
