@@ -79,10 +79,38 @@ function agregarAlCarrito(catalogo){
                 let cantidadesProductos = carrito.reduce((acc, producto) => acc + producto.cantidad, 0);
                 const total = carrito.reduce((acumulador, producto) => acumulador + (producto.price * producto.cantidad), 0);             
                 document.getElementById("cart-total").innerHTML = `${cantidadesProductos} - $${total}`;
-          });      
+                
+          });
+        
+      
     }
     console.log(carrito)
 }
+
+
+// FUNCION QUE BORRA PRODUCTOS DEL CARRITO
+
+const eliminarDelCarrito = (productoId) => {
+  const producto = carrito.find((prod) => prod.id === productoId)
+  const i = carrito.indexOf(producto)
+  producto.cantidad--
+  if(producto.cantidad <= 0){
+      carrito.splice(i, 1)
+      producto.cantidad = 1
+  }
+  localStorage.setItem("carrito", JSON.stringify(carrito));
+  let cantidadesProductos = carrito.reduce((acc, producto) => acc + producto.cantidad, 0);
+    const total = carrito.reduce((acumulador, producto) => acumulador + (producto.price * producto.cantidad), 0);
+    document.getElementById("cart-total").innerHTML = `${cantidadesProductos} - $${total}`;
+    document.getElementById("items").innerHTML = `${cantidadesProductos}`;
+    document.getElementById("checkout").innerHTML = `${cantidadesProductos} - $${total}`;
+    generarCardsCarrito()
+    {Swal.fire({
+        icon: 'success',
+        title: 'Producto eliminado!',
+    })}
+}
+
 
 
 // FILTRAR PRODUCTOS SEGUN CATEGORIAS PARTE DE ABAJO Y PARTE DE ARRIBA
@@ -98,28 +126,10 @@ for (const nodoHTML of document.getElementsByClassName('filtrar-categoria')){
     document.getElementById("seccion-card").innerHTML = "";
     const productosFiltrados = productos.filter((producto) => producto.category === categoria);
     crearCards(productosFiltrados) // CREA LAS CARDS DE PRODUCTOS FILTADOS
-    agregarAlCarrito(productosFiltrados) // FUNCION QUE AGREGA PRODUCTOS FILTRADOS AL CARRITO  
+    agregarAlCarrito(productosFiltrados) // FUNCION QUE AGREGA PRODUCTOS FILTRADOS AL CARRITO
+  
   }
-
-
-// FUNCION QUE BORRA PRODUCTOS DEL CARRITO
-
-function eliminarDelCarrito(productoId) {
-    const borrado = carrito.find((producto) => producto.id == productoId)
-    let i = carrito.indexOf(borrado)
-    if (i != -1) carrito.splice(i, 1)
-    localStorage.setItem("carrito", JSON.stringify(carrito))
-    let cantidadesProductos = carrito.reduce((acc, producto) => acc + producto.cantidad, 0);
-    const total = carrito.reduce((acumulador, producto) => acumulador + (producto.price * producto.cantidad), 0);
-    document.getElementById("cart-total").innerHTML = `${cantidadesProductos} - $${total}`;
-    document.getElementById("items").innerHTML = `${cantidadesProductos}`;
-    document.getElementById("checkout").innerHTML = `${cantidadesProductos} - $${total}`;
-    generarCardsCarrito()
-    {Swal.fire({
-        icon: 'success',
-        title: 'Producto eliminado!',
-    })}
-  }
+  
   
   //FUNCION QUE PERMITE RECARGAR LA PÁGINA CON EL BOTÓN DE INICIO
 
