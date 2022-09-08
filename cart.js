@@ -26,7 +26,7 @@ function generarCardsCarrito() {
 }
 generarCardsCarrito()
 
-// FUNCION QUE VACIA CARRITO COMPLETO
+// BOTON QUE VACIA CARRITO COMPLETO
 
 function botonVaciado(producto) {
     div.innerHTML = `<div>
